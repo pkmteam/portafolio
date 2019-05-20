@@ -150,7 +150,7 @@ CREATE TABLE pedido (
 
 CREATE TABLE preg_secreta (
     id_preg_sec     NUMBER(1) NOT NULL,--pk
-    pregunta        VARCHAR(200) NOT NULL,
+    pregunta        VARCHAR2(200) NOT NULL,
 
     CONSTRAINT preg_sec_pk PRIMARY KEY (id_preg_sec)
 );
