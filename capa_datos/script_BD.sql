@@ -278,5 +278,5 @@ CREATE SEQUENCE seq_empleado_id;
 CREATE SEQUENCE seq_jerarquia_id;
 CREATE SEQUENCE seq_pregunta_id;
 
-INSERT INTO jerarquia VALUES(seq_jerarquia_id.nextval, "Administrador");
-INSERT INTO preg_secreta VALUES(seq_pregunta_id.nextval, "pregunta 1");
+INSERT INTO jerarquia VALUES(seq_jerarquia_id.NEXTVAL, "Administrador");
+INSERT INTO preg_secreta VALUES(seq_pregunta_id.NEXTVAL, "pregunta 1");
