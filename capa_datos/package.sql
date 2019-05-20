@@ -11,7 +11,7 @@ CREATE OR REPLACE PACKAGE PKG_EMPLEADO IS
         , resp_sec  IN  EMPLEADO.RESP_SEC%TYPE
         , preg_sec  IN  PREG_SECRETA.PREGUNTA%TYPE
         , jerarquia IN  JERARQUIA.NOMBRE%TYPE
-        , resultado IN  INTEGER
+        , resultado OUT INTEGER
         );
 END PKG_EMPLEADO;
 
@@ -85,7 +85,8 @@ CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO IS
 		INSERT INTO ERROR_PROCESO
 		VALUES (seq_error_id.nextval,
 			'pkg_empleado.c_empleado usuario duplicado',
-			v_cod_error||' '||v_men_error);
+			v_cod_error||' '||v_men_error,
+			sysdate());
 
            WHEN OTHERS THEN
             	resultado := -1;
@@ -94,6 +95,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO IS
             	INSERT INTO ERROR_PROCESO
             	VALUES (SEQ_ERROR_ID.NEXTVAL, 
                     	'PKG_EMPLEADO.C_EMPLEADO ERROR NO IDENTIFICADO', 
-                    	v_cod_error||' '||v_men_error);
+                    	v_cod_error||' '||v_men_error,
+			sysdate());
     END c_empleado;
 END PKG_EMPLEADO;
