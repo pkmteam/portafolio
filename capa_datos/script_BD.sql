@@ -126,7 +126,7 @@ CREATE TABLE medio_pago_bol (
     medio_pago      NUMBER(3) NOT NULL,--fk
     boleta          NUMBER(4) NOT NULL,--fk
 
-    CONSTRAINT medio_pago_pk PRIMARY KEY (id_pago_bol)
+    CONSTRAINT medio_pago_bol_pk PRIMARY KEY (id_pago_bol)
 );
 
 CREATE TABLE medio_pago (
@@ -273,3 +273,10 @@ ALTER TABLE transferencia ADD CONSTRAINT trans_medio_fk
 
 ALTER TABLE fiado ADD CONSTRAINT fiado_medio_fk
     FOREIGN KEY (id_pago_fiado) REFERENCES medio_pago (id_medio_pago);
+---------------- Insert -------------------------------
+CREATE SEQUENCE seq_empleado_id;
+CREATE SEQUENCE seq_jerarquia_id;
+CREATE SEQUENCE seq_pregunta_id;
+
+INSERT INTO jerarquia VALUES(seq_jerarquia_id.nextval, "Administrador");
+INSERT INTO preg_secreta VALUES(seq_pregunta_id.nextval, "pregunta 1");
