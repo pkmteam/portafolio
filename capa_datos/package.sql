@@ -9,8 +9,8 @@ CREATE OR REPLACE PACKAGE PKG_EMPLEADO IS
         , usuario   IN  EMPLEADO.USUARIO%TYPE
         , pass      IN  EMPLEADO.PASS%TYPE
         , resp_sec  IN  EMPLEADO.RESP_SEC%TYPE
-        , preg_sec  IN  PREG_SECRETA.PREGUNTA%TYPE
-        , jerarquia IN  JERARQUIA.NOMBRE%TYPE
+        , preg_in   IN  PREG_SECRETA.PREGUNTA%TYPE
+        , jerar_in  IN  JERARQUIA.NOMBRE%TYPE
         , resultado OUT INTEGER
         );
 END PKG_EMPLEADO;
@@ -50,8 +50,8 @@ CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO IS
         , usuario   IN  EMPLEADO.USUARIO%TYPE
         , pass      IN  EMPLEADO.PASS%TYPE
         , resp_sec  IN  EMPLEADO.RESP_SEC%TYPE
-        , preg_sec  IN  PREG_SECRETA.PREGUNTA%TYPE
-        , jerarquia IN  JERARQUIA.NOMBRE%TYPE
+        , preg_in   IN  PREG_SECRETA.PREGUNTA%TYPE
+        , jerar_in  IN  JERARQUIA.NOMBRE%TYPE
         , resultado OUT INTEGER
         )IS
 	user_duplicate	EXCEPTION;
@@ -72,8 +72,8 @@ CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO IS
             	, usuario
             	, pass
             	, resp_sec
-            	, (select id_preg_sec from preg_secreta where pregunta = preg_sec)
-            	, (select id_jerarquia from jerarquia where nombre = jerarquia)
+            	, (select id_preg_sec from preg_secreta where pregunta = preg_in)
+            	, (select id_jerarquia from jerarquia where nombre = jerar_in)
             	);
         	resultado := 1;
 	END IF;
