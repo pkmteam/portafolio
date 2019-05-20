@@ -38,7 +38,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO IS
 	end loop;
 	close c_usuario;
 	return answer;
-    END sear_user;
+    END search_user;
 
     PROCEDURE c_empleado
         ( p_nombre  IN  EMPLEADO.P_NOMBRE%TYPE
