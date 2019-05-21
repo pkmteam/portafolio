@@ -23,6 +23,10 @@ public class Empleado {
     private String PregSec;
     private String Jerarquia;
 
+    public Empleado() {
+    }
+
+  
     public Empleado(String P_Nombre, String S_Nombre, String Paterno, String Materno, int Fono, String Email, String Usuario, String Pass, String RespSec, String PregSec, String Jerarquia) {
         this.P_Nombre = P_Nombre;
         this.S_Nombre = S_Nombre;
