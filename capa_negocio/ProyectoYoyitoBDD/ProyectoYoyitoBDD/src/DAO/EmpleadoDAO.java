@@ -42,6 +42,33 @@ public boolean IngresarEmpleado(String Pnom, String Snom, String Paterno, String
         
         return resultado;
 }
+    
+public Empleado ReadEmp(String User)
+ {  
+     ResultSet rs = null;
+     Empleado emp = null;
+     
+     try {
+         Connection con;
+        con = Conexion.getConexion();
+            CallableStatement call = con.prepareCall("{call PKG_EMPLEADO.r_empleado}");        
+            call.setString(1,User);
+            call.registerOutParameter(2, OracleTypes.CURSOR);
+            call.execute();
+            rs = (ResultSet) call.getObject(2);
+            
+            while (rs.next()) 
+            {
+                emp = new Empleado(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+            
+            }
+     } catch (ClassNotFoundException | SQLException ex) {
+          Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+     }
+
+return  emp;
+}
+    
 
 
 }
