@@ -1,3 +1,4 @@
+
 CREATE OR REPLACE PACKAGE PKG_EMPLEADO IS
     PROCEDURE c_empleado
         ( p_nombre  IN  EMPLEADO.P_NOMBRE%TYPE
@@ -14,8 +15,8 @@ CREATE OR REPLACE PACKAGE PKG_EMPLEADO IS
         , resultado OUT INTEGER
         );
 END PKG_EMPLEADO;
-
-CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO IS
+/
+CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO AS
     v_cod_error     NUMBER(10);
     v_men_error     VARCHAR2(250);
 ----- FUNCION DE BUSQUEDA DE USUARIO ------------
@@ -62,7 +63,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO IS
 	ELSE
            INSERT INTO EMPLEADO 
             	VALUES
-            	( seq_empleado_id.nextval
+            	( seq_empleado.NEXTVAL
             	, p_nombre
             	, s_nombre
             	, a_paterno
@@ -83,7 +84,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO IS
 		v_cod_error := SQLCODE;
 		v_men_error := SQLERRM;
 		INSERT INTO ERROR_PROCESO
-		VALUES (seq_error_id.nextval,
+		VALUES (seq_error.NEXTVAL,
 			'pkg_empleado.c_empleado usuario duplicado',
 			v_cod_error||' '||v_men_error,
 			sysdate());
@@ -93,7 +94,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO IS
             	v_cod_error := SQLCODE;
             	v_men_error := SQLERRM;
             	INSERT INTO ERROR_PROCESO
-            	VALUES (SEQ_ERROR_ID.NEXTVAL, 
+            	VALUES (seq_error.NEXTVAL, 
                     	'PKG_EMPLEADO.C_EMPLEADO ERROR NO IDENTIFICADO', 
                     	v_cod_error||' '||v_men_error,
 			sysdate());

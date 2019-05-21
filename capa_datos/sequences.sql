@@ -1,1 +1,118 @@
-CREATE SEQUENCE seq_empleado_id;
+
+DROP SEQUENCE seq_empleado;
+DROP SEQUENCE seq_clave;
+DROP SEQUENCE seq_cliente;
+DROP SEQUENCE seq_detalle_bol;
+DROP SEQUENCE seq_detalle_ped;
+DROP SEQUENCE seq_estado;
+DROP SEQUENCE seq_error;
+DROP SEQUENCE seq_familia;
+DROP SEQUENCE seq_fam_prov;
+DROP SEQUENCE seq_jerarquia;
+DROP SEQUENCE seq_pago_boleta; --medio_pago_bol
+DROP SEQUENCE seq_medio_pago;
+DROP SEQUENCE seq_pedido;
+DROP SEQUENCE seq_pregunta; --preg_secreta
+DROP SEQUENCE seq_proveedor;
+DROP SEQUENCE seq_producto;
+DROP SEQUENCE seq_stock;
+DROP SEQUENCE seq_tipo_tarjeta;
+DROP SEQUENCE seq_vigencia; --vigencia_prod
+
+CREATE SEQUENCE seq_vigencia
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_tipo_tarjeta
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_stock
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_producto
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_proveedor
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_pregunta
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_pedido
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_medio_pago
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_pago_boleta
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_jerarquia
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_fam_prov
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_familia
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_error
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_estado
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_detalle_ped
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_detalle_bol
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_cliente
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_clave
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+CREATE SEQUENCE seq_empleado
+    INCREMENT BY 1
+    START WITH 1
+    NOCACHE
+    NOCYCLE;
+    
+COMMIT;
