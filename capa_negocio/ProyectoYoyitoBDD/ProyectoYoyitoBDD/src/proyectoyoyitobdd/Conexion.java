@@ -9,7 +9,7 @@ public class Conexion {
        if(con==null)
        {
           Class.forName("oracle.jdbc.driver.OracleDriver");
-          con= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "C##BDD", "admin");
+          con= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "C##usuarioDuoc", "colocolo30");
         }
         return con;
     }
