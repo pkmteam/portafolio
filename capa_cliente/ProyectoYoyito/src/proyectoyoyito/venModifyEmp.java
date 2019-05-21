@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.xml.bind.ParseConversionEvent;
+import modelo.Empleado;
+import oracle.jdbc.proxy.ExtractDelegatePermission;
 
 /**
  *
@@ -17,13 +20,25 @@ import javax.swing.JOptionPane;
  */
 public class venModifyEmp extends javax.swing.JFrame {
 
-    /**
-     * Creates new form venModifyEmp
-     */
-    public venModifyEmp() {
+    Empleado emp;
+    public venModifyEmp(Empleado emp) {
         initComponents();
+        LlenarCampos(emp);
     }
-
+    
+    public void LlenarCampos(Empleado emp){
+       
+       textNombrep.setText(emp.getP_Nombre());
+       textNombres.setText(emp.getS_Nombre());
+       textApellidop.setText(emp.getPaterno());
+       textApellidom.setText(emp.getMaterno());
+       txtFono.setText(String.valueOf(emp.getFono()));
+       txtMail.setText(emp.getEmail());
+       txtUser.setText(emp.getUsuario());
+       txtUser.disable();
+       comboPregunta.setSelectedItem(emp.getPregSec());
+       bocJerarquia.setSelectedItem(emp.getJerarquia());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -225,68 +240,11 @@ public class venModifyEmp extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btonIngresarActionPerformed
-        String P_NOMBRE,S_NOMBRE, A_PATERNO, A_MATERNO,  MAIL, USUARIO, PASS, RESP_SEC,PREG_SEC,JERARQUIA;
-        int FONO;
-
-        P_NOMBRE = textNombrep.getText();
-        S_NOMBRE = textNombres.getText();
-        A_PATERNO = textApellidop.getText();
-        A_MATERNO = textApellidom.getText();
-        FONO = Integer.parseInt(txtFono.getText());
-        MAIL = txtMail.getText();
-        USUARIO = txtUser.getText();
-        PASS = txtPass.getText();
-        RESP_SEC = txtRespuesta.getText();
-        PREG_SEC = comboPregunta.getSelectedItem().toString();
-        JERARQUIA = bocJerarquia.getSelectedItem().toString();
-
-        EmpleadoDAO dao = new EmpleadoDAO();
-        try {
-            if(dao.IngresarEmpleado(P_NOMBRE, S_NOMBRE, A_PATERNO, A_MATERNO, FONO, MAIL, USUARIO, PASS, RESP_SEC, PREG_SEC, JERARQUIA)){
-                JOptionPane.showMessageDialog(this,"Empleado ingresado");
-
-            }
-            else
-            JOptionPane.showMessageDialog(this, "No se pudo ingresar");
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(venLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
+     
     }//GEN-LAST:event_btonIngresarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(venModifyEmp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(venModifyEmp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(venModifyEmp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(venModifyEmp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new venModifyEmp().setVisible(true);
-            }
-        });
-    }
+ 
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> bocJerarquia;

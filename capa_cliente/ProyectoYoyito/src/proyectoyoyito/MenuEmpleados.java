@@ -118,7 +118,13 @@ public class MenuEmpleados extends javax.swing.JFrame {
         Empleado emp = empDAO.ReadEmp(name);
         if (emp != null) {
               JOptionPane.showMessageDialog(this, "Empleado encontrado");
-        }
+                venModifyEmp ven = new venModifyEmp(emp);
+                ven.setVisible(true);
+                ven.setLocationRelativeTo(null);
+                ven.setResizable(false);
+                ven.setTitle("Creacion de Empleados");
+                ven.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            }
         else{
             JOptionPane.showMessageDialog(this, "Empleado no existe");
         }

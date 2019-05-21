@@ -27,12 +27,10 @@
               <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnVolver" pref="133" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btnModificar" pref="133" max="32767" attributes="0"/>
-                      <Component id="btnIngresarEmp" max="32767" attributes="0"/>
-                      <Component id="jButton2" max="32767" attributes="0"/>
-                      <Component id="jButton3" alignment="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="btnModificar" pref="133" max="32767" attributes="0"/>
+                  <Component id="btnIngresarEmp" max="32767" attributes="0"/>
+                  <Component id="jButton2" max="32767" attributes="0"/>
+                  <Component id="jButton3" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="140" max="32767" attributes="0"/>
           </Group>
