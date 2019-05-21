@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.xml.bind.ParseConversionEvent;
+//import javax.xml.bind.ParseConversionEvent;
 import modelo.Empleado;
 import oracle.jdbc.proxy.ExtractDelegatePermission;
 

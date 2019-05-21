@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package modelo;
 
 /**
  *
@@ -20,10 +20,13 @@ public class Empleado {
     private String Usuario;
     private String Pass;
     private String RespSec;
-    private int PregSec;
-    private int Jerarquia;
+    private String PregSec;
+    private String Jerarquia;
 
-    public Empleado(String P_Nombre, String S_Nombre, String Paterno, String Materno, int Fono, String Email, String Usuario, String Pass, String RespSec, int PregSec, int Jerarquia) {
+    public Empleado() {
+    }
+
+    public Empleado(String P_Nombre, String S_Nombre, String Paterno, String Materno, int Fono, String Email, String Usuario, String Pass, String RespSec, String PregSec, String Jerarquia) {
         this.P_Nombre = P_Nombre;
         this.S_Nombre = S_Nombre;
         this.Paterno = Paterno;
@@ -109,19 +112,19 @@ public class Empleado {
         this.RespSec = RespSec;
     }
 
-    public int getPregSec() {
+    public String getPregSec() {
         return PregSec;
     }
 
-    public void setPregSec(int PregSec) {
+    public void setPregSec(String PregSec) {
         this.PregSec = PregSec;
     }
 
-    public int getJerarquia() {
+    public String getJerarquia() {
         return Jerarquia;
     }
 
-    public void setJerarquia(int Jerarquia) {
+    public void setJerarquia(String Jerarquia) {
         this.Jerarquia = Jerarquia;
     }
    
