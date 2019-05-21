@@ -59,8 +59,16 @@ public Empleado ReadEmp(String User)
             
             while (rs.next()) 
             {
-                emp = new Empleado(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
-            
+                emp = new Empleado();
+                emp.setP_Nombre(rs.getString(1));
+                emp.setS_Nombre(rs.getString(2));
+                emp.setPaterno(rs.getString(3));
+                emp.setMaterno(rs.getString(4));
+                emp.setFono(rs.getInt(5));
+                emp.setEmail(rs.getString(6));
+                emp.setUsuario(rs.getString(7));
+                emp.setPregSec(rs.getString(8));
+                emp.setJerarquia(rs.getString(9));
             }
      } catch (ClassNotFoundException | SQLException ex) {
           Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -68,6 +76,7 @@ public Empleado ReadEmp(String User)
 
 return  emp;
 }
+
     
 
 
