@@ -1,5 +1,6 @@
 
 CREATE OR REPLACE PACKAGE PKG_EMPLEADO IS
+    TYPE cur_empleado IS REF CURSOR;
     PROCEDURE c_empleado
         ( p_nombre  IN  EMPLEADO.P_NOMBRE%TYPE
         , s_nombre  IN  EMPLEADO.s_NOMBRE%TYPE
@@ -14,12 +15,16 @@ CREATE OR REPLACE PACKAGE PKG_EMPLEADO IS
         , jerar_in  IN  JERARQUIA.NOMBRE%TYPE
         , resultado OUT INTEGER
         );
+    PROCEDURE r_empleado
+        ( v_usuario  IN  EMPLEADO.USUARIO%TYPE
+        , r_empleado OUT cur_empleado
+        );
 END PKG_EMPLEADO;
 /
 CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO AS
     v_cod_error     NUMBER(10);
     v_men_error     VARCHAR2(250);
------ FUNCION DE BUSQUEDA DE USUARIO ------------
+----- FUNCION DE BUSQUEDA DE EMPLEADO ------------
     FUNCTION search_user
 	( usuario_in EMPLEADO.USUARIO%TYPE
 	) RETURN BOOLEAN IS
@@ -40,7 +45,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO AS
 	close c_usuario;
 	return answer;
     END search_user;
-
+----- PROCEDIMIENTO INGRESO DE EMPLEADO ------------
     PROCEDURE c_empleado
         ( p_nombre  IN  EMPLEADO.P_NOMBRE%TYPE
         , s_nombre  IN  EMPLEADO.s_NOMBRE%TYPE
@@ -84,19 +89,40 @@ CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO AS
 		v_cod_error := SQLCODE;
 		v_men_error := SQLERRM;
 		INSERT INTO ERROR_PROCESO
-		VALUES (seq_error.NEXTVAL,
-			'pkg_empleado.c_empleado usuario duplicado',
-			v_cod_error||' '||v_men_error,
-			sysdate());
+            VALUES 
+            ( seq_error.NEXTVAL
+            , 'pkg_empleado.c_empleado usuario duplicado'
+            , v_cod_error||' '||v_men_error
+            , sysdate()
+            );
 
-           WHEN OTHERS THEN
-            	resultado := -1;
-            	v_cod_error := SQLCODE;
-            	v_men_error := SQLERRM;
-            	INSERT INTO ERROR_PROCESO
-            	VALUES (seq_error.NEXTVAL, 
-                    	'PKG_EMPLEADO.C_EMPLEADO ERROR NO IDENTIFICADO', 
-                    	v_cod_error||' '||v_men_error,
-			sysdate());
+       WHEN OTHERS THEN
+        resultado := -1;
+        v_cod_error := SQLCODE;
+        v_men_error := SQLERRM;
+        INSERT INTO ERROR_PROCESO
+            VALUES 
+            ( seq_error.NEXTVAL
+            , 'PKG_EMPLEADO.C_EMPLEADO ERROR NO IDENTIFICADO'
+            , v_cod_error||' '||v_men_error
+            , sysdate()
+            );
     END c_empleado;
+    
+    PROCEDURE r_empleado
+        ( v_usuario  IN  EMPLEADO.USUARIO%TYPE
+        , r_empleado OUT cur_empleado
+        ) AS
+    BEGIN
+        OPEN r_empleado FOR
+        SELECT  NOMBRE,
+                APELLIDO_P,
+                APELLIDO_M,
+                CORREO,
+                PASS,
+                JERARQUIA
+        FROM USUARIO 
+        WHERE correo = v_correo;
+    END r_empleado;
+    
 END PKG_EMPLEADO;
