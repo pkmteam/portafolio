@@ -14,4 +14,8 @@ INSERT INTO familia VALUES(seq_familia.NEXTVAL, 'familia 2');
 INSERT INTO familia VALUES(seq_familia.NEXTVAL, 'familia 3');
 INSERT INTO familia VALUES(seq_familia.NEXTVAL, 'familia 4');
 
+----------- Vigencia -------------------
+INSERT INTO vigencia_prod VALUES(SEQ_VIGENCIA.nextval, 'Vigente');
+INSERT INTO vigencia_prod VALUES(SEQ_VIGENCIA.nextval, 'No Vigente');
+
 COMMIT;
