@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import proyectoyoyitobdd.Conexion;
 
 /**
@@ -29,7 +30,9 @@ public class ProyectoYoyito {
         ven.setVisible(true); 
         ven.setLocationRelativeTo(null);
         ven.setResizable(false);
-        ven.setTitle("Ingreso de Empleados");
+        ven.setTitle("Login");
+        ven.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
        
         
         
