@@ -114,15 +114,22 @@ CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO AS
         , r_empleado OUT cur_empleado
         ) AS
     BEGIN
-        OPEN r_empleado FOR
-        SELECT  NOMBRE,
-                APELLIDO_P,
-                APELLIDO_M,
-                CORREO,
-                PASS,
-                JERARQUIA
-        FROM USUARIO 
-        WHERE correo = v_correo;
+        IF search_user(v_usuario) THEN
+            OPEN r_empleado FOR
+            SELECT p_nombre
+                 , s_nombre
+                 , a_paterno
+                 , a_materno
+                 , fono      
+                 , mail      
+                 , usuario   
+                 --, pass      
+                 --, resp_sec  
+                 , (SELECT pregunta FROM preg_secreta WHERE id_preg_sec = empleado.preg_sec)   
+                 , (SELECT nombre FROM jerarquia WHERE id_jerarquia = empleado.jerarquia)  
+            FROM EMPLEADO 
+            WHERE usuario = v_usuario;
+        END IF;
     END r_empleado;
     
 END PKG_EMPLEADO;
