@@ -19,7 +19,7 @@ public boolean IngresarEmpleado(String Pnom, String Snom, String Paterno, String
     try{
         Connection con;
         con = Conexion.getConexion();
-        CallableStatement call = con.prepareCall("{call PKG_EMPLEADO.C_EMPLEADO(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        CallableStatement call = con.prepareCall("{call PKG_EMPLEADO.C_EMPLEADO(?,?,?,?,?,?,?,?,?,?,?,?)}");
         call.setString(1, Pnom);
         call.setString(2, Snom);
         call.setString(3, Paterno);
