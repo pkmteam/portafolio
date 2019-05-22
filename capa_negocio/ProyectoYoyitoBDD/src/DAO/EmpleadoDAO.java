@@ -106,15 +106,21 @@ public class EmpleadoDAO {
         
         return key;
     }
+    
     public boolean DeleteEmp(String user)
     {  
-
         boolean resultado = false;
         try {
             Connection con;
             con = Conexion.getConexion();
-            String sql = "delete from empleado where usuario = '"+user+"';";       
-            resultado = true;
+            String sql = "delete from empleado where usuario = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, user);
+            
+            resultado = ps.executeUpdate() == 1;
+            
+            ps.close();
+            
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
