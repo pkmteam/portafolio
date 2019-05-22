@@ -7,6 +7,7 @@ package DAO;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Producto;
 import oracle.jdbc.OracleTypes;
 //import Modelo.*;
 import proyectoyoyitobdd.*;
@@ -38,5 +39,28 @@ public class ProductoDAO {
         }
         
         return resultado;
-    }  
+    }
+    
+    public Producto read(String nombre){
+        Producto producto = null;
+        
+        try {
+            Connection con = Conexion.getConexion();
+            CallableStatement call = con.prepareCall("{call pkg_producto.r_producto(?,?)}");
+            call.setString(1, nombre);
+            call.registerOutParameter(2, OracleTypes.CURSOR);
+            call.execute();
+            
+            ResultSet rs = (ResultSet) call.getObject(2);
+            
+            while(rs.next()){
+                producto = new Producto(rs.getString(1), String.valueOf(rs.getInt(2)), " ", rs.getString(3), rs.getString(4));
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return producto;
+    }
 }
