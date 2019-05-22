@@ -18,24 +18,24 @@ import proyectoyoyitobdd.Conexion;
  * @author felip
  */
 public class ProovedorDAO {
-    public boolean IngresarProveedor(String nom, String razon, String rut, String fono, String mail) throws SQLException, ClassNotFoundException{
-    boolean resultado=false;
+    public boolean IngresarProveedor(String nom, String razon, int rut, int fono, String mail){
+        boolean resultado=false;
       
-    try{
-        Connection con;
-        con = Conexion.getConexion();
-        CallableStatement call = con.prepareCall("{call PAKAGE(?,?,?,?,?)}");
-        call.setString(1, nom);
-        call.setString(2, razon);
-        call.setString(3, rut);
-        call.setString(4, fono);
-        call.setString(5, mail);
-        call.setInt(6, OracleTypes.INTEGER);
-        call.execute();
+        try{
+            Connection con;
+            con = Conexion.getConexion();
+            CallableStatement call = con.prepareCall("{call PAKAGE(?,?,?,?,?)}");
+            call.setString(1, nom);
+            call.setString(2, razon);
+            call.setInt(3, rut);
+            call.setInt(4, fono);
+            call.setString(5, mail);
+            call.setInt(6, OracleTypes.INTEGER);
+            call.execute();
         
-        resultado=true;
+            resultado=true;
         
-    } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ProovedorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         

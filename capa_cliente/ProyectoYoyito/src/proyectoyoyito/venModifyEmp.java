@@ -6,13 +6,13 @@
 package proyectoyoyito;
 
 import DAO.EmpleadoDAO;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.xml.bind.ParseConversionEvent;
+//import java.sql.SQLException;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
+//import javax.swing.JOptionPane;
+//import javax.xml.bind.ParseConversionEvent;
 import modelo.Empleado;
-import oracle.jdbc.proxy.ExtractDelegatePermission;
+//import oracle.jdbc.proxy.ExtractDelegatePermission;
 
 /**
  *
@@ -26,7 +26,7 @@ public class venModifyEmp extends javax.swing.JFrame {
         LlenarCampos(emp);
     }
     
-    public void LlenarCampos(Empleado emp){
+    public final void LlenarCampos(Empleado emp){
        
        textNombrep.setText(emp.getP_Nombre());
        textNombres.setText(emp.getS_Nombre());

@@ -1,7 +1,7 @@
 
 package proyectoyoyito;
 
-import DAO.ProveedorDAO;
+import DAO.ProovedorDAO;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -144,20 +144,14 @@ public class venProveedores extends javax.swing.JFrame {
         fono = Integer.parseInt(txtFono.getText());
         mail = txtMail.getText();
         
-        ProveedorDAO prov = new ProveedorDAO();
+        ProovedorDAO prov = new ProovedorDAO();
         
-         try {
-            if(prov.IngresarProveedor(nom, raz, rut, fono, mail)){
-                JOptionPane.showMessageDialog(this,"Proveedor ingresado");
-
-            }
-            else
-            JOptionPane.showMessageDialog(this, "No se pudo ingresar");
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(venProveedores.class.getName()).log(Level.SEVERE, null, ex);
+         
+        if(prov.IngresarProveedor(nom, raz, rut, fono, mail)){
+            JOptionPane.showMessageDialog(this,"Proveedor ingresado");
         }
-
-        
+        else JOptionPane.showMessageDialog(this, "No se pudo ingresar");
+       
     }//GEN-LAST:event_btnIngresarActionPerformed
 
   

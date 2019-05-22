@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Modelo.Empleado;
+import modelo.Empleado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
