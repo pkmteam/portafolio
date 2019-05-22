@@ -77,7 +77,21 @@ public Empleado ReadEmp(String User)
 return  emp;
 }
 
-    
+          public boolean DeleteEmp(String user)
+{  
+     
+     boolean resultado = false;
+     
+     try {
+            Connection con;
+            con = Conexion.getConexion();
+            String sql = "delete from empleado where usuario = '"+user+"';";       
+            resultado = true;
+     } catch (ClassNotFoundException | SQLException ex) {
+          Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     return  resultado;
+}
 
 
 }
