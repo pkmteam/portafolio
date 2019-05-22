@@ -18,6 +18,9 @@ CREATE OR REPLACE PACKAGE PKG_EMPLEADO IS
         ( v_usuario  IN  EMPLEADO.USUARIO%TYPE
         , r_empleado OUT cur_empleado
         );
+    PROCEDURE rall_empleado
+        ( r_empleado OUT cur_empleado
+        );
 END PKG_EMPLEADO;
 /
 CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO AS
@@ -130,5 +133,22 @@ CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO AS
             WHERE usuario = v_usuario;
         END IF;
     END r_empleado;
+----- PROCEDIMIENTO TODOS LOS EMPLEADOS ------------
+    PROCEDURE rall_empleado
+        ( r_empleado OUT cur_empleado
+        )AS
+    BEGIN
+        OPEN r_empleado FOR
+        SELECT p_nombre
+             , s_nombre
+             , a_paterno
+             , a_materno
+             , fono      
+             , mail      
+             , usuario   
+             , (SELECT pregunta FROM preg_secreta WHERE id_preg_sec = empleado.preg_sec)   
+             , (SELECT nombre FROM jerarquia WHERE id_jerarquia = empleado.jerarquia)  
+        FROM EMPLEADO;
+    END rall_empleado;
     
 END PKG_EMPLEADO;
