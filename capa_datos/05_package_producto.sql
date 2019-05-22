@@ -92,6 +92,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_PRODUCTO AS
             vigencia = (select id_vigencia from vigencia_prod where vigencia = vigencia_in)
         WHERE nombre = nombre_in;
         respuesta := 1;
+    
     EXCEPTION
         WHEN OTHERS THEN
         respuesta := -1;

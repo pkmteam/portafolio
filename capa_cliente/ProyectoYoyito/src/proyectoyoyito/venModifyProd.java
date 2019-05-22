@@ -9,6 +9,7 @@ import DAO.ListaDAO;
 import DAO.ProductoDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import modelo.Producto;
 
 /**
  *
@@ -22,12 +23,19 @@ public class venModifyProd extends javax.swing.JFrame {
     ArrayList<String> listVigencia = new ListaDAO().listVigencia();
     ArrayList<String> listFamilia = new ListaDAO().listFamilia();
     
-    public venModifyProd() {
+    public venModifyProd(Producto producto) {
         initComponents();
         listVigencia.forEach((aux) -> {cmbVigencia.addItem(aux);});
         listFamilia.forEach((aux) -> {cmbFamilia.addItem(aux);});
+        llenarCampos(producto);
     }
 
+    public final void llenarCampos(Producto producto){
+       txtNombreProducto.setText(producto.getNomProd());
+       txtPrecio.setText(producto.getPrice());
+       cmbFamilia.setSelectedItem(producto.getFam());
+       cmbVigencia.setSelectedItem(producto.getVigencia());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -133,19 +141,16 @@ public class venModifyProd extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        String nombre,fam, vigen,img;
-        int precio;
+        Producto producto = new Producto();
         
-        
-        nombre = txtNombreProducto.getText();
-        precio = Integer.parseInt(txtPrecio.getText());
-        fam = cmbFamilia.getSelectedItem().toString();
-        vigen = cmbVigencia.getSelectedItem().toString();
-        img= "";
+        producto.setNomProd(txtNombreProducto.getText());
+        producto.setPrice(txtPrecio.getText());
+        producto.setFam(cmbFamilia.getSelectedItem().toString());
+        producto.setVigencia(cmbVigencia.getSelectedItem().toString());
         
         ProductoDAO prd = new ProductoDAO();
         
-        if(prd.IngresarProducto(nombre, precio, img, fam, vigen)){JOptionPane.showMessageDialog(this, "Producto ingresado correctamente");}
+        if(prd.update(producto)){JOptionPane.showMessageDialog(this, "Producto modificado correctamente");}
         else{JOptionPane.showMessageDialog(this, "Proceso no realizado");}
     }//GEN-LAST:event_btnIngresarActionPerformed
 

@@ -106,7 +106,12 @@ public class MenuProductos extends javax.swing.JFrame {
         ProductoDAO productoDAO = new ProductoDAO();
         
         if(productoDAO.read(producto) != null){
-            JOptionPane.showMessageDialog(this, "se encontro el producto");
+            venModifyProd ven = new venModifyProd(productoDAO.read(producto));
+            ven.setVisible(true);
+            ven.setLocationRelativeTo(null);
+            ven.setResizable(false);
+            ven.setTitle("Modificar Producto");
+            ven.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         }
         else { JOptionPane.showMessageDialog(this, " NO!!! se encontro el producto"); }
     }//GEN-LAST:event_btnModificarProductoActionPerformed

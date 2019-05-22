@@ -16,6 +16,8 @@ public class Producto {
     private String fam;
     private String Vigencia;
 
+    public Producto(){}
+    
     public Producto(String nomProd, String price, String img, String fam, String Vigencia) {
         this.nomProd = nomProd;
         this.price = price;

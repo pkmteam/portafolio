@@ -63,4 +63,27 @@ public class ProductoDAO {
         
         return producto;
     }
+    
+    public boolean update(Producto producto){
+        boolean key = false;
+        
+        try {
+            Connection con = Conexion.getConexion();
+            CallableStatement call = con.prepareCall("{call pkg_producto.u_producto(?,?,?,?,?)}");
+            call.setString(1, producto.getNomProd());
+            call.setInt(2, Integer.parseInt(producto.getPrice()));
+            //call.setString(3, img);
+            call.setString(3, producto.getFam());
+            call.setString(4, producto.getVigencia());
+            call.registerOutParameter(5, OracleTypes.INTEGER);
+            call.execute();
+            
+            key = call.getInt(5) == 1;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return key;
+    }
 }
