@@ -196,7 +196,7 @@ CREATE TABLE producto (
     id_producto     NUMBER(3) NOT NULL,--pk
     nombre          VARCHAR2(20) NOT NULL,
     precio          NUMBER(6) NOT NULL,
-    imagen          CLOB ,
+    --imagen          CLOB ,
     familia         NUMBER(3) NOT NULL,--fk
     vigencia        NUMBER(1) NOT NULL,--fk
 

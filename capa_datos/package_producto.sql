@@ -2,7 +2,7 @@ CREATE OR REPLACE PACKAGE PKG_PRODUCTO AS
     PROCEDURE c_producto
         ( nombre_in    IN  PRODUCTO.NOMBRE%TYPE 
         , precio_in    IN  PRODUCTO.PRECIO%TYPE
-        , imagen_in    IN  PRODUCTO.IMAGEN%TYPE
+        --, imagen_in    IN  PRODUCTO.IMAGEN%TYPE
         , familia_in   IN  FAMILIA.NOMBRE%TYPE
         , vigencia_in  IN  VIGENCIA_PROD.VIGENCIA%TYPE
         , respuesta    OUT INTEGER
@@ -16,7 +16,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_PRODUCTO AS
     PROCEDURE c_producto
         ( nombre_in    IN  PRODUCTO.NOMBRE%TYPE 
         , precio_in    IN  PRODUCTO.PRECIO%TYPE
-        , imagen_in    IN  PRODUCTO.IMAGEN%TYPE
+        --, imagen_in    IN  PRODUCTO.IMAGEN%TYPE
         , familia_in   IN  FAMILIA.NOMBRE%TYPE
         , vigencia_in  IN  VIGENCIA_PROD.VIGENCIA%TYPE
         , respuesta    OUT INTEGER
@@ -27,7 +27,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_PRODUCTO AS
             ( SEQ_PRODUCTO.nextval
             , nombre_in
             , precio_in
-            , null
+            --, null
             , (select id_familia from familia where nombre = familia_in)
             , (select id_vigencia from vigencia_prod where vigencia = 'Vigente'/*vigencia_in*/)
             );

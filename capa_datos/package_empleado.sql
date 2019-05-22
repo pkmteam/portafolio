@@ -21,6 +21,20 @@ CREATE OR REPLACE PACKAGE PKG_EMPLEADO IS
     PROCEDURE rall_empleado
         ( r_empleado OUT cur_empleado
         );
+    PROCEDURE u_empleado
+        ( p_nombre_in  IN  EMPLEADO.P_NOMBRE%TYPE
+        , s_nombre_in  IN  EMPLEADO.s_NOMBRE%TYPE
+        , a_paterno_in IN  EMPLEADO.A_PATERNO%TYPE
+        , a_materno_in IN  EMPLEADO.A_MATERNO%TYPE
+        , fono_in      IN  EMPLEADO.FONO%TYPE
+        , mail_in      IN  EMPLEADO.MAIL%TYPE
+        , usuario_in   IN  EMPLEADO.USUARIO%TYPE
+        , pass_in      IN  EMPLEADO.PASS%TYPE
+        , resp_sec_in  IN  EMPLEADO.RESP_SEC%TYPE
+        , preg_in      IN  PREG_SECRETA.PREGUNTA%TYPE
+        , jerar_in     IN  JERARQUIA.NOMBRE%TYPE
+        , resultado    OUT INTEGER
+        );
 END PKG_EMPLEADO;
 /
 CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO AS
@@ -150,5 +164,49 @@ CREATE OR REPLACE PACKAGE BODY PKG_EMPLEADO AS
              , (SELECT nombre FROM jerarquia WHERE id_jerarquia = empleado.jerarquia)  
         FROM EMPLEADO;
     END rall_empleado;
+----- PROCEDIMIENTO MODIFICAR EMPLEADO ------------    
+    PROCEDURE u_empleado
+        ( p_nombre_in  IN  EMPLEADO.P_NOMBRE%TYPE
+        , s_nombre_in  IN  EMPLEADO.s_NOMBRE%TYPE
+        , a_paterno_in IN  EMPLEADO.A_PATERNO%TYPE
+        , a_materno_in IN  EMPLEADO.A_MATERNO%TYPE
+        , fono_in      IN  EMPLEADO.FONO%TYPE
+        , mail_in      IN  EMPLEADO.MAIL%TYPE
+        , usuario_in   IN  EMPLEADO.USUARIO%TYPE
+        , pass_in      IN  EMPLEADO.PASS%TYPE
+        , resp_sec_in  IN  EMPLEADO.RESP_SEC%TYPE
+        , preg_in      IN  PREG_SECRETA.PREGUNTA%TYPE
+        , jerar_in     IN  JERARQUIA.NOMBRE%TYPE
+        , resultado    OUT INTEGER
+        ) IS
+    BEGIN
+        UPDATE EMPLEADO SET
+            p_nombre = p_nombre_in ,
+            s_nombre = s_nombre_in ,
+            a_paterno = a_paterno_in ,
+            a_materno = a_materno_in ,
+            fono = fono_in ,
+            mail = mail_in ,
+            usuario = usuario_in ,
+            pass = pass_in ,
+            resp_sec = resp_sec_in ,
+            preg_sec = (select id_preg_sec from preg_secreta where pregunta = preg_in) ,
+            jerarquia = (select id_jerarquia from jerarquia where nombre = jerar_in)
+        WHERE usuario = usuario_in;
     
+        resultado := 1;
+    
+    EXCEPTION
+        WHEN OTHERS THEN
+        resultado := -1;
+        v_cod_error := SQLCODE;
+        v_men_error := SQLERRM;
+        INSERT INTO ERROR_PROCESO
+            VALUES 
+            ( seq_error.NEXTVAL
+            , 'PKG_EMPLEADO.C_EMPLEADO ERROR NO IDENTIFICADO'
+            , v_cod_error||' '||v_men_error
+            , sysdate()
+            );
+    END u_empleado;
 END PKG_EMPLEADO;

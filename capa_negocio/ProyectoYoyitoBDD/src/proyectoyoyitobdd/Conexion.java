@@ -11,7 +11,7 @@ public class Conexion {
        if(con==null)
        {
           Class.forName("oracle.jdbc.driver.OracleDriver");
-          con= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "C##usuarioDuoc", "colocolo30");
+          con= DriverManager.getConnection("jdbc:oracle:thin:@172.18.02:1521:XE", "pkm", "pkm");//@172.18.02:1521 "C##usuarioDuoc", "colocolo30"
         }
         return con;
     }

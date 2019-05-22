@@ -6,6 +6,7 @@
 package proyectoyoyito;
 
 import DAO.EmpleadoDAO;
+import javax.swing.JOptionPane;
 //import java.sql.SQLException;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
@@ -240,7 +241,23 @@ public class venModifyEmp extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btonIngresarActionPerformed
-     
+        Empleado empleado = new Empleado();
+        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+        
+        empleado.setP_Nombre(textNombrep.getText());
+        empleado.setS_Nombre(textNombres.getText());
+        empleado.setPaterno(textApellidop.getText());
+        empleado.setMaterno(textApellidom.getText());
+        empleado.setFono(Integer.parseInt(txtFono.getText()));
+        empleado.setEmail(txtMail.getText());
+        empleado.setUsuario(txtUser.getText());
+        empleado.setPass(txtPass.getText());
+        empleado.setRespSec(txtRespuesta.getText());
+        empleado.setPregSec(comboPregunta.getSelectedItem().toString());
+        empleado.setJerarquia(bocJerarquia.getSelectedItem().toString());
+        
+        if(empleadoDAO.updateEmp(empleado)){JOptionPane.showMessageDialog(this, "empleado modificado exitosamente");}
+        else {JOptionPane.showMessageDialog(this, "proceso invalido \n verifique el correcto llenado de los datos");}
     }//GEN-LAST:event_btonIngresarActionPerformed
 
  
