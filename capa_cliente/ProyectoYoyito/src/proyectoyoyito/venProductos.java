@@ -5,6 +5,12 @@
  */
 package proyectoyoyito;
 
+import DAO.ProductoDAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Basti
@@ -48,11 +54,16 @@ public class venProductos extends javax.swing.JFrame {
 
         jLabel4.setText("Familia");
 
-        cmbFamilia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFamilia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "familia 1", "familia 2", "familia 3", "familia 4" }));
 
-        cmbVigencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbVigencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vigente", "No Vigente" }));
 
         btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +131,31 @@ public class venProductos extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
       dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        String nombre,fam, vigen,img;
+        int precio;
+        
+        
+        nombre = txtNombreProducto.getText();
+        precio = Integer.parseInt(txtPrecio.getText());
+        fam = cmbFamilia.getSelectedItem().toString();
+        vigen = cmbVigencia.getSelectedItem().toString();
+        img= "";
+        
+        ProductoDAO prd = new ProductoDAO();
+           try {
+            if(prd.IngresarProducto(nombre,precio,img, fam, vigen)){
+                JOptionPane.showMessageDialog(this,"Empleado ingresado");
+
+            }
+            else
+            JOptionPane.showMessageDialog(this, "No se pudo ingresar");
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(venProductos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
    
 
