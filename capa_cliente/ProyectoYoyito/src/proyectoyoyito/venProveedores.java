@@ -2,9 +2,6 @@
 package proyectoyoyito;
 
 import DAO.ProovedorDAO;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -147,10 +144,8 @@ public class venProveedores extends javax.swing.JFrame {
         ProovedorDAO prov = new ProovedorDAO();
         
          
-        if(prov.IngresarProveedor(nom, raz, rut, fono, mail)){
-            JOptionPane.showMessageDialog(this,"Proveedor ingresado");
-        }
-        else JOptionPane.showMessageDialog(this, "No se pudo ingresar");
+        if(prov.IngresarProveedor(nom, raz, rut, fono, mail)){ JOptionPane.showMessageDialog(this,"Proveedor ingresado"); }
+        else{JOptionPane.showMessageDialog(this, "No se pudo ingresar");}
        
     }//GEN-LAST:event_btnIngresarActionPerformed
 

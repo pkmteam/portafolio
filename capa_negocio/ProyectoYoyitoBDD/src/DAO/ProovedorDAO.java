@@ -24,16 +24,15 @@ public class ProovedorDAO {
         try{
             Connection con;
             con = Conexion.getConexion();
-            CallableStatement call = con.prepareCall("{call PAKAGE(?,?,?,?,?)}");
+            CallableStatement call = con.prepareCall("{call PKG_PROVEEDOR.C_PROVEEDOR(?,?,?,?,?,?)}");
             call.setString(1, nom);
             call.setString(2, razon);
             call.setInt(3, rut);
             call.setInt(4, fono);
             call.setString(5, mail);
-            call.setInt(6, OracleTypes.INTEGER);
-            call.execute();
-        
-            resultado=true;
+            call.registerOutParameter(6, OracleTypes.INTEGER);
+            
+            resultado= call.executeUpdate() == 1;
         
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ProovedorDAO.class.getName()).log(Level.SEVERE, null, ex);
