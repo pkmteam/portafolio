@@ -144,17 +144,9 @@ public class venProductos extends javax.swing.JFrame {
         img= "";
         
         ProductoDAO prd = new ProductoDAO();
-           try {
-            if(prd.IngresarProducto(nombre,precio,img, fam, vigen)){
-                JOptionPane.showMessageDialog(this,"Empleado ingresado");
-
-            }
-            else
-            JOptionPane.showMessageDialog(this, "No se pudo ingresar");
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(venProductos.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
+        if(prd.IngresarProducto(nombre, precio, img, fam, vigen)){JOptionPane.showMessageDialog(this, "Producto ingresado correctamente");}
+        else{JOptionPane.showMessageDialog(this, "Proceso no realizado");}
     }//GEN-LAST:event_btnIngresarActionPerformed
 
    

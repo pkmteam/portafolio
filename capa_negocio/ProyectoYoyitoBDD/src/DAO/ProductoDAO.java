@@ -16,22 +16,22 @@ import proyectoyoyitobdd.*;
  */
 public class ProductoDAO {
     
-    public boolean IngresarProducto(String nom, int precio, String img, String fam, String vig) throws SQLException, ClassNotFoundException{
+    public boolean IngresarProducto(String nom, int precio, String img, String fam, String vig){
         boolean resultado=false;
       
         try{
             Connection con;
             con = Conexion.getConexion();
-            CallableStatement call = con.prepareCall("{call PACKAGE(?,?,?,?,?");
+            CallableStatement call = con.prepareCall("{call PKG_PRODUCTO.C_PRODUCTO(?,?,?,?,?)}");
             call.setString(1, nom);
             call.setInt(2, precio);
-            call.setString(3, img);
-            call.setString(4, fam);
-            call.setString(5, vig);
-            call.setInt(6, OracleTypes.INTEGER);
+            //call.setString(3, img);
+            call.setString(3, fam);
+            call.setString(4, vig);
+            call.registerOutParameter(5, OracleTypes.INTEGER);
             call.execute();
         
-            resultado=true;
+            resultado= call.getInt(5) == 1;
         
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
