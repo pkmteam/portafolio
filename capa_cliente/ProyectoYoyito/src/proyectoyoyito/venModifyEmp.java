@@ -6,24 +6,23 @@
 package proyectoyoyito;
 
 import DAO.EmpleadoDAO;
+import DAO.ListaDAO;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
-//import java.sql.SQLException;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
-//import javax.swing.JOptionPane;
-//import javax.xml.bind.ParseConversionEvent;
 import modelo.Empleado;
-//import oracle.jdbc.proxy.ExtractDelegatePermission;
-
 /**
  *
  * @author Basti
  */
 public class venModifyEmp extends javax.swing.JFrame {
 
-    Empleado emp;
+    ArrayList<String> listPregunta = new ListaDAO().listPregunta();
+    ArrayList<String> listJerarquia = new ListaDAO().listJerarquia();
+    
     public venModifyEmp(Empleado emp) {
         initComponents();
+        listJerarquia.forEach((aux) -> {bocJerarquia.addItem(aux);});
+        listPregunta.forEach((aux) -> {comboPregunta.addItem(aux);});
         LlenarCampos(emp);
     }
     
@@ -90,13 +89,9 @@ public class venModifyEmp extends javax.swing.JFrame {
 
         jButton1.setText("Limpiar");
 
-        bocJerarquia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Empleado" }));
-
         jLabel1.setText("Primer Nombre");
 
         jLabel2.setText("Respuesta Secreta");
-
-        comboPregunta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pregunta 1", "pregunta 2", "pregunta 3", "pregunta 4" }));
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {

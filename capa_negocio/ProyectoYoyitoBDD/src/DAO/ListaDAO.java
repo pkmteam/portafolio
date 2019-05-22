@@ -21,46 +21,80 @@ import proyectoyoyitobdd.Conexion;
  */
 public class ListaDAO {
     
-      public ArrayList <Empleado> ListJ()
+    public ArrayList<String> listJerarquia()
     {
-        ArrayList<Empleado> emple=new ArrayList<>();
+        ArrayList<String> lista = new ArrayList<>();
         try {
             Connection con;
             con = Conexion.getConexion();
-            String sql = "select Nombre from jerarquia";
+            String sql = "select nombre from jerarquia";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                Empleado emp = new Empleado();
-                
-                emp.setJerarquia(rs.getString(1));
-                emple.add(emp);
-            }
+            
+            while (rs.next()) { lista.add(rs.getString(1)); }
+            
+            ps.close();
+            
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ListaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return emple;
+        return lista;
     }
-      
-        public ArrayList <Empleado> ListPS()
+    
+    public ArrayList<String> listPregunta()
     {
-        ArrayList<Empleado> emple=new ArrayList<>();
+        ArrayList<String> lista=new ArrayList<>();
         try {
             Connection con;
             con = Conexion.getConexion();
             String sql = "select pregunta from preg_secreta";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                Empleado emp = new Empleado();
-                
-                emp.setPregSec(rs.getString(1));
-                emple.add(emp);
-            }
+            
+            while (rs.next()){ lista.add(rs.getString(1)); }
+            
+            ps.close();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ListaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return emple;
+        return lista;
     }
-      
+    
+    public ArrayList<String> listFamilia()
+    {
+        ArrayList<String> lista=new ArrayList<>();
+        try {
+            Connection con;
+            con = Conexion.getConexion();
+            String sql = "select nombre from familia";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){ lista.add(rs.getString(1)); }
+            
+            ps.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(ListaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
+    
+    public ArrayList<String> listVigencia()
+    {
+        ArrayList<String> lista=new ArrayList<>();
+        try {
+            Connection con;
+            con = Conexion.getConexion();
+            String sql = "select vigencia from vigencia_prod";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){ lista.add(rs.getString(1)); }
+            
+            ps.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(ListaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
 }

@@ -6,7 +6,9 @@
 package proyectoyoyito;
 
 import DAO.EmpleadoDAO;
+import DAO.ListaDAO;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,8 +22,14 @@ public class venEmpleados extends javax.swing.JFrame {
     /**
      * Creates new form venEmpleados
      */
+    
+    ArrayList<String> listPregunta = new ListaDAO().listPregunta();
+    ArrayList<String> listJerarquia = new ListaDAO().listJerarquia();
+    
     public venEmpleados() {
         initComponents();
+        listJerarquia.forEach((aux) -> {bocJerarquia.addItem(aux);});
+        listPregunta.forEach((aux) -> {comboPregunta.addItem(aux);});
     }
 
     /**
@@ -63,10 +71,6 @@ public class venEmpleados extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        bocJerarquia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Empleado" }));
-
-        comboPregunta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pregunta 1", "pregunta 2", "pregunta 3", "pregunta 4" }));
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {

@@ -5,10 +5,9 @@
  */
 package proyectoyoyito;
 
+import DAO.ListaDAO;
 import DAO.ProductoDAO;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,8 +19,13 @@ public class venProductos extends javax.swing.JFrame {
     /**
      * Creates new form venProductos
      */
+    ArrayList<String> listVigencia = new ListaDAO().listVigencia();
+    ArrayList<String> listFamilia = new ListaDAO().listFamilia();
+    
     public venProductos() {
         initComponents();
+        listVigencia.forEach((aux) -> {cmbVigencia.addItem(aux);});
+        listFamilia.forEach((aux) -> {cmbFamilia.addItem(aux);});
     }
 
     /**
@@ -53,10 +57,6 @@ public class venProductos extends javax.swing.JFrame {
         jLabel3.setText("Vigencia");
 
         jLabel4.setText("Familia");
-
-        cmbFamilia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "familia 1", "familia 2", "familia 3", "familia 4" }));
-
-        cmbVigencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vigente", "No Vigente" }));
 
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {

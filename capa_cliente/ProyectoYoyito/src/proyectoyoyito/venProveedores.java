@@ -143,7 +143,6 @@ public class venProveedores extends javax.swing.JFrame {
         
         ProovedorDAO prov = new ProovedorDAO();
         
-         
         if(prov.IngresarProveedor(nom, raz, rut, fono, mail)){ JOptionPane.showMessageDialog(this,"Proveedor ingresado"); }
         else{JOptionPane.showMessageDialog(this, "No se pudo ingresar");}
        
